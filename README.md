@@ -3,6 +3,10 @@
 
 PHP用Dockerイメージを管理する（開発用）
 
+`php:7.2.14-fpm-alpine`をベースとし、`php.ini`の設定と必要なライブラリをインストールしたイメージです。
+
+開発用のため`Xdebug`も追加しています。
+
 ## Docker Hub
 
 https://cloud.docker.com/u/nursesenka/repository/docker/nursesenka/php-development
@@ -14,7 +18,28 @@ https://dockeri.co/
 
 ## 検証手順
 
-※ 後で記載します。
+ビルドが実行できることを確認してください。
+
+```
+docker build -t nursesenka/php-development .
+```
+
+
+`docker images`を実行し、`nursesenka/php-development`というイメージが作成されていることを確認してください。
+```
+REPOSITORY                         TAG                 IMAGE ID            CREATED             SIZE
+nursesenka/php-development         latest              d0535faa11a6        24 seconds ago      325MB
+```
+
+下記を実行し、コンテナが起動できることとXdebugがインストールされていることを確認してください。
+```
+docker run -it nursesenka/php-development php -m
+```
+
+```
+[Zend Modules]
+Xdebug
+```
 
 ## 自動Buildについて
 
